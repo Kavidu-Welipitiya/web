@@ -70,12 +70,13 @@
     theme: {
       extend: {
         colors: {
-          bg: '#0A0C10',
-          surface: '#12151B',
-          surface2: '#171B23',
-          edge: '#242833',
-          cream: '#F3EEE2',
-          muted: '#8D97AA',
+          /* Inverted for Light Theme */
+          bg: '#F8FAFC',
+          surface: '#FFFFFF',
+          surface2: '#F1F5F9',
+          edge: '#E2E8F0',
+          cream: '#0F172A', /* Acts as main dark text color now */
+          muted: '#64748B',
           orange: { DEFAULT: '#F1791F', deep: '#C8570A', light: '#FFA85C' },
           navy: '#312C6E',
         },
@@ -95,19 +96,19 @@
 
 <style>
   :root { --orange: #F1791F; --navy: #312C6E; }
-  html, body { background:#0A0C10; }
+  html, body { background:#F8FAFC; }
   body { font-family:'Inter', sans-serif; }
-  ::selection { background:#F1791F; color:#0A0C10; }
+  ::selection { background:#F1791F; color:#FFFFFF; }
 
   /* scrollbar */
   ::-webkit-scrollbar{ width:8px; }
-  ::-webkit-scrollbar-track{ background:#0A0C10; }
-  ::-webkit-scrollbar-thumb{ background:#242833; border-radius:8px; }
+  ::-webkit-scrollbar-track{ background:#F8FAFC; }
+  ::-webkit-scrollbar-thumb{ background:#CBD5E1; border-radius:8px; }
   ::-webkit-scrollbar-thumb:hover{ background:#F1791F; }
 
   .grain::before{
     content:"";
-    position:fixed; inset:0; pointer-events:none; z-index:2; opacity:.035;
+    position:fixed; inset:0; pointer-events:none; z-index:2; opacity:.05;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
@@ -146,7 +147,7 @@
   @keyframes float-y { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
   .float-y{ animation: float-y 6s ease-in-out infinite; }
 
-  .glow-text{ text-shadow: 0 0 40px rgba(241,121,31,.35); }
+  .glow-text{ text-shadow: 0 0 40px rgba(241,121,31,.25); }
 
   .card-glow{ position:relative; }
   .card-glow::before{
@@ -158,11 +159,11 @@
   }
   .card-glow:hover::before{ opacity:1; }
 
-  .grad-line{ background:linear-gradient(90deg, transparent, #242833 20%, #242833 80%, transparent); }
+  .grad-line{ background:linear-gradient(90deg, transparent, #E2E8F0 20%, #E2E8F0 80%, transparent); }
 
   .hero-radial{
-    background: radial-gradient(60% 55% at 72% 32%, rgba(241,121,31,.16), transparent 60%),
-                radial-gradient(40% 40% at 15% 75%, rgba(49,44,110,.28), transparent 65%);
+    background: radial-gradient(60% 55% at 72% 32%, rgba(241,121,31,.08), transparent 60%),
+                radial-gradient(40% 40% at 15% 75%, rgba(49,44,110,.08), transparent 65%);
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -187,7 +188,7 @@
     </div>
     
     <!-- Premium Progress Bar -->
-    <div class="w-56 h-[3px] bg-surface2 mt-8 rounded-full overflow-hidden shadow-inner">
+    <div class="w-56 h-[3px] bg-surface2 mt-8 rounded-full overflow-hidden shadow-inner border border-edge">
       <div class="h-full bg-gradient-to-r from-orange to-orange-light animate-load-progress shadow-[0_0_10px_#F1791F]"></div>
     </div>
   </div>
@@ -200,7 +201,7 @@
     <div id="navInner" class="flex items-center justify-between h-20 transition-all duration-300 rounded-b-2xl">
       <a href="#top" aria-label="OTEC Labs Homepage" class="flex items-center gap-3 group">
         <img src="Screenshot 2026-07-29 182215.png" alt="OTEC Labs Custom Software Development" class="h-10 w-10 object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-md" />
-        <span class="font-display font-semibold tracking-tight text-lg drop-shadow-sm">OTEC <span class="text-orange">LABS</span></span>
+        <span class="font-display font-semibold tracking-tight text-lg drop-shadow-sm text-cream">OTEC <span class="text-orange">LABS</span></span>
       </a>
 
       <nav aria-label="Main Navigation" class="hidden md:flex items-center gap-9 font-mono text-[13px] text-muted">
@@ -211,7 +212,7 @@
       </nav>
 
       <div class="flex items-center gap-3">
-        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-orange hover:bg-orange-deep text-bg font-semibold text-sm px-6 py-2.5 rounded-full transition-all duration-300 shadow-premium hover:shadow-premium-hover transform hover:-translate-y-0.5">
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-orange hover:bg-orange-deep text-white font-semibold text-sm px-6 py-2.5 rounded-full transition-all duration-300 shadow-premium hover:shadow-premium-hover transform hover:-translate-y-0.5">
           Start a project
         </a>
         <button id="menuBtn" aria-label="Toggle Mobile Menu" class="md:hidden h-10 w-10 grid place-items-center rounded-full border border-edge bg-surface/50 hover:bg-surface transition-colors">
@@ -231,7 +232,7 @@
       <a href="#process" class="hover:text-orange transition-colors">process</a>
       <a href="#pipeline" class="hover:text-orange transition-colors">systems</a>
       <a href="#manifesto" class="hover:text-orange transition-colors">manifesto</a>
-      <a href="#contact" class="text-bg bg-orange text-center py-3 rounded-xl font-bold mt-2 hover:bg-orange-deep">start a project →</a>
+      <a href="#contact" class="text-white bg-orange text-center py-3 rounded-xl font-bold mt-2 hover:bg-orange-deep">start a project →</a>
     </div>
   </div>
 </header>
@@ -241,17 +242,16 @@
   <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-16 items-center">
 
     <div class="lg:col-span-7 z-10">
-      <div class="inline-flex items-center gap-2 font-mono text-xs text-orange-light border border-orange/25 bg-orange/5 rounded-full px-4 py-1.5 mb-8 shadow-sm">
+      <div class="inline-flex items-center gap-2 font-mono text-xs text-orange-deep border border-orange/25 bg-orange/10 rounded-full px-4 py-1.5 mb-8 shadow-sm">
         <span class="h-1.5 w-1.5 rounded-full bg-orange animate-pulse"></span>
         <span id="typeLine">otec --deploy --mode automation</span><span class="caret">▍</span>
       </div>
 
-      <h1 class="font-display font-semibold text-[13vw] leading-[0.95] sm:text-6xl lg:text-[4.6rem] tracking-tight">
+      <h1 class="font-display font-semibold text-[13vw] leading-[0.95] sm:text-6xl lg:text-[4.6rem] tracking-tight text-cream">
         Software that works
         <span class="block text-transparent bg-clip-text bg-gradient-to-r from-orange to-orange-light glow-text pb-2">while you don't.</span>
       </h1>
 
-      <!-- SEO Hierarchy: Using an H2 for the subheadline packed with target keywords -->
       <h2 class="mt-8 max-w-xl text-lg text-muted leading-relaxed font-normal">
         OTEC Labs designs and builds <strong>custom software</strong> and <strong>AI-driven automation</strong> —
         the kind that quietly takes over the busywork so your team can spend
@@ -259,7 +259,7 @@
       </h2>
 
       <div class="mt-10 flex flex-wrap items-center gap-4">
-        <a href="#contact" class="bg-orange hover:bg-orange-deep text-bg font-semibold px-7 py-3.5 rounded-full transition-all duration-300 shadow-premium hover:shadow-premium-hover transform hover:-translate-y-0.5">
+        <a href="#contact" class="bg-orange hover:bg-orange-deep text-white font-semibold px-7 py-3.5 rounded-full transition-all duration-300 shadow-premium hover:shadow-premium-hover transform hover:-translate-y-0.5">
           Book a build call
         </a>
         <a href="#process" class="inline-flex items-center gap-2 text-cream/90 hover:text-orange font-medium px-4 py-3.5 transition-colors group">
@@ -268,7 +268,7 @@
         </a>
       </div>
 
-      <div class="mt-16 flex items-center gap-8 font-mono text-xs text-muted/70">
+      <div class="mt-16 flex items-center gap-8 font-mono text-xs text-muted">
         <span class="hover:text-orange transition-colors cursor-default">custom software</span>
         <span class="h-1 w-1 rounded-full bg-edge"></span>
         <span class="hover:text-orange transition-colors cursor-default">ai agents</span>
@@ -281,7 +281,7 @@
     <div class="lg:col-span-5 flex justify-center z-0" aria-hidden="true">
       <div class="relative w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] float-y">
         <svg viewBox="0 0 480 480" class="absolute inset-0 w-full h-full pulse-ring">
-          <circle cx="240" cy="240" r="228" fill="none" stroke="#312C6E" stroke-width="1.4" opacity=".8"/>
+          <circle cx="240" cy="240" r="228" fill="none" stroke="#E2E8F0" stroke-width="2" opacity=".8"/>
         </svg>
 
         <svg viewBox="0 0 480 480" class="absolute inset-0 w-full h-full spin-slow">
@@ -295,22 +295,22 @@
         </svg>
 
         <svg viewBox="0 0 480 480" class="absolute inset-0 w-full h-full">
-          <circle cx="240" cy="240" r="56" fill="#0A0C10" stroke="#F1791F" stroke-width="2" class="shadow-inner"/>
+          <circle cx="240" cy="240" r="56" fill="#FFFFFF" stroke="#F1791F" stroke-width="2" class="shadow-md"/>
           <path d="M223 224 L263 224 Q280 224 280 240 Q280 256 263 256 L237 256"
-            fill="none" stroke="#F3EEE2" stroke-width="9" stroke-linecap="round"/>
-          <path d="M237 256 L223 246 M237 256 L223 266" stroke="#F3EEE2" stroke-width="9" stroke-linecap="round"/>
+            fill="none" stroke="#0F172A" stroke-width="9" stroke-linecap="round"/>
+          <path d="M237 256 L223 246 M237 256 L223 266" stroke="#0F172A" stroke-width="9" stroke-linecap="round"/>
         </svg>
 
         <svg viewBox="0 0 480 480" class="absolute inset-0 w-full h-full">
-          <circle r="5.5" fill="#FFA85C" class="orbit-dot drop-shadow-[0_0_5px_#FFA85C]"/>
+          <circle r="5.5" fill="#F1791F" class="orbit-dot drop-shadow-[0_0_5px_#F1791F]"/>
         </svg>
       </div>
     </div>
   </div>
 
   <!-- marquee -->
-  <div class="mt-20 border-y border-edge py-5 overflow-hidden bg-surface/30 backdrop-blur-sm" aria-hidden="true">
-    <div class="flex whitespace-nowrap marquee-track font-mono text-sm text-muted/60 gap-10">
+  <div class="mt-20 border-y border-edge py-5 overflow-hidden bg-surface/80 backdrop-blur-md" aria-hidden="true">
+    <div class="flex whitespace-nowrap marquee-track font-mono text-sm text-muted gap-10">
       <span class="flex gap-10">
         <span class="hover:text-orange transition-colors">AI AGENTS</span><span class="text-orange/50">•</span>
         <span class="hover:text-orange transition-colors">WORKFLOW AUTOMATION</span><span class="text-orange/50">•</span>
@@ -335,43 +335,43 @@
 <section id="capabilities" class="py-28 lg:py-36 relative">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="reveal max-w-2xl mb-16">
-      <span class="font-mono text-xs text-orange bg-orange/10 px-3 py-1.5 rounded-full border border-orange/20">// capabilities</span>
-      <h2 class="font-display font-semibold text-4xl lg:text-5xl mt-6 tracking-tight">
+      <span class="font-mono text-xs text-orange-deep bg-orange/10 px-3 py-1.5 rounded-full border border-orange/20">// capabilities</span>
+      <h2 class="font-display font-semibold text-4xl lg:text-5xl mt-6 tracking-tight text-cream">
         Four systems. One team running them.
       </h2>
     </div>
 
     <div class="grid md:grid-cols-2 gap-6">
 
-      <article class="reveal card-glow relative bg-surface border border-edge rounded-2xl p-8 lg:p-10 transition-transform duration-500 hover:-translate-y-1.5 shadow-lg hover:shadow-2xl">
+      <article class="reveal card-glow relative bg-surface border border-edge rounded-2xl p-8 lg:p-10 transition-transform duration-500 hover:-translate-y-1.5 shadow-sm hover:shadow-xl">
         <div class="h-14 w-14 rounded-xl bg-orange/10 flex items-center justify-center mb-6 border border-orange/20">
           <svg class="h-7 w-7 text-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l-5 3 5 3M16 9l5 3-5 3M13 5l-2 14"/></svg>
         </div>
-        <h3 class="font-display text-xl font-semibold mb-3">Custom Software</h3>
+        <h3 class="font-display text-xl font-semibold mb-3 text-cream">Custom Software</h3>
         <p class="text-muted leading-relaxed">Full-stack applications built around how your team actually works — not bent to fit a template that almost fits.</p>
       </article>
 
-      <article class="reveal reveal-delay-1 card-glow relative bg-surface border border-edge rounded-2xl p-8 lg:p-10 transition-transform duration-500 hover:-translate-y-1.5 shadow-lg hover:shadow-2xl">
+      <article class="reveal reveal-delay-1 card-glow relative bg-surface border border-edge rounded-2xl p-8 lg:p-10 transition-transform duration-500 hover:-translate-y-1.5 shadow-sm hover:shadow-xl">
         <div class="h-14 w-14 rounded-xl bg-orange/10 flex items-center justify-center mb-6 border border-orange/20">
           <svg class="h-7 w-7 text-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
         </div>
-        <h3 class="font-display text-xl font-semibold mb-3">AI Automation</h3>
+        <h3 class="font-display text-xl font-semibold mb-3 text-cream">AI Automation</h3>
         <p class="text-muted leading-relaxed">Agents and pipelines that handle repetitive decisions, data entry, and follow-ups — without a human babysitting each step.</p>
       </article>
 
-      <article class="reveal reveal-delay-1 card-glow relative bg-surface border border-edge rounded-2xl p-8 lg:p-10 transition-transform duration-500 hover:-translate-y-1.5 shadow-lg hover:shadow-2xl">
+      <article class="reveal reveal-delay-1 card-glow relative bg-surface border border-edge rounded-2xl p-8 lg:p-10 transition-transform duration-500 hover:-translate-y-1.5 shadow-sm hover:shadow-xl">
         <div class="h-14 w-14 rounded-xl bg-orange/10 flex items-center justify-center mb-6 border border-orange/20">
           <svg class="h-7 w-7 text-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4a3 3 0 0 1 3 3V14M6.5 10v4a3 3 0 0 0 3 3h4"/></svg>
         </div>
-        <h3 class="font-display text-xl font-semibold mb-3">Workflow Orchestration</h3>
+        <h3 class="font-display text-xl font-semibold mb-3 text-cream">Workflow Orchestration</h3>
         <p class="text-muted leading-relaxed">Connect the tools you already run into a single automated flow — no more copy-pasting between five different tabs.</p>
       </article>
 
-      <article class="reveal reveal-delay-2 card-glow relative bg-surface border border-edge rounded-2xl p-8 lg:p-10 transition-transform duration-500 hover:-translate-y-1.5 shadow-lg hover:shadow-2xl">
+      <article class="reveal reveal-delay-2 card-glow relative bg-surface border border-edge rounded-2xl p-8 lg:p-10 transition-transform duration-500 hover:-translate-y-1.5 shadow-sm hover:shadow-xl">
         <div class="h-14 w-14 rounded-xl bg-orange/10 flex items-center justify-center mb-6 border border-orange/20">
           <svg class="h-7 w-7 text-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9M11 19V5M18 19v-7"/></svg>
         </div>
-        <h3 class="font-display text-xl font-semibold mb-3">Data Intelligence</h3>
+        <h3 class="font-display text-xl font-semibold mb-3 text-cream">Data Intelligence</h3>
         <p class="text-muted leading-relaxed">Scattered data turned into dashboards, alerts, and forecasts your team can actually act on the same day.</p>
       </article>
 
@@ -383,8 +383,8 @@
 <section id="process" class="py-28 lg:py-36 bg-surface2 border-y border-edge">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <div class="reveal max-w-2xl mb-20">
-      <span class="font-mono text-xs text-orange bg-orange/10 px-3 py-1.5 rounded-full border border-orange/20">// how it works</span>
-      <h2 class="font-display font-semibold text-4xl lg:text-5xl mt-6 tracking-tight">
+      <span class="font-mono text-xs text-orange-deep bg-orange/10 px-3 py-1.5 rounded-full border border-orange/20">// how it works</span>
+      <h2 class="font-display font-semibold text-4xl lg:text-5xl mt-6 tracking-tight text-cream">
         From messy workflow to a system that runs itself.
       </h2>
     </div>
@@ -393,22 +393,22 @@
       <div class="hidden md:block absolute top-6 left-[12%] right-[12%] h-px grad-line"></div>
 
       <div class="reveal relative group">
-        <div class="h-12 w-12 rounded-full bg-bg border-2 border-edge group-hover:border-orange transition-colors grid place-items-center font-mono text-orange text-sm relative z-10 shadow-lg">01</div>
+        <div class="h-12 w-12 rounded-full bg-surface border-2 border-edge group-hover:border-orange transition-colors grid place-items-center font-mono text-orange text-sm relative z-10 shadow-sm">01</div>
         <h3 class="font-display font-semibold text-lg mt-6 mb-2 text-cream">Discover</h3>
         <p class="text-muted text-sm leading-relaxed">We map the current workflow and find exactly where time and money leak out.</p>
       </div>
       <div class="reveal reveal-delay-1 relative group">
-        <div class="h-12 w-12 rounded-full bg-bg border-2 border-edge group-hover:border-orange transition-colors grid place-items-center font-mono text-orange text-sm relative z-10 shadow-lg">02</div>
+        <div class="h-12 w-12 rounded-full bg-surface border-2 border-edge group-hover:border-orange transition-colors grid place-items-center font-mono text-orange text-sm relative z-10 shadow-sm">02</div>
         <h3 class="font-display font-semibold text-lg mt-6 mb-2 text-cream">Design</h3>
         <p class="text-muted text-sm leading-relaxed">Architecture and automation logic get planned before a single line of code.</p>
       </div>
       <div class="reveal reveal-delay-2 relative group">
-        <div class="h-12 w-12 rounded-full bg-bg border-2 border-edge group-hover:border-orange transition-colors grid place-items-center font-mono text-orange text-sm relative z-10 shadow-lg">03</div>
+        <div class="h-12 w-12 rounded-full bg-surface border-2 border-edge group-hover:border-orange transition-colors grid place-items-center font-mono text-orange text-sm relative z-10 shadow-sm">03</div>
         <h3 class="font-display font-semibold text-lg mt-6 mb-2 text-cream">Build</h3>
         <p class="text-muted text-sm leading-relaxed">Software and AI agents get built, tested, and wired into the tools you already use.</p>
       </div>
       <div class="reveal reveal-delay-3 relative group">
-        <div class="h-12 w-12 rounded-full bg-bg border-2 border-edge group-hover:border-orange transition-colors grid place-items-center font-mono text-orange text-sm relative z-10 shadow-lg">04</div>
+        <div class="h-12 w-12 rounded-full bg-surface border-2 border-edge group-hover:border-orange transition-colors grid place-items-center font-mono text-orange text-sm relative z-10 shadow-sm">04</div>
         <h3 class="font-display font-semibold text-lg mt-6 mb-2 text-cream">Run</h3>
         <p class="text-muted text-sm leading-relaxed">We monitor, refine, and scale the system as your team and workload grow.</p>
       </div>
@@ -418,71 +418,72 @@
 
 <!-- ============ PIPELINE / SHOWCASE ============ -->
 <section id="pipeline" class="py-28 lg:py-36 relative overflow-hidden">
-  <div class="absolute -right-32 top-1/4 w-96 h-96 bg-orange/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -right-32 top-1/4 w-96 h-96 bg-orange/10 rounded-full blur-3xl pointer-events-none"></div>
   <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
 
     <div class="reveal relative z-10">
-      <span class="font-mono text-xs text-orange bg-orange/10 px-3 py-1.5 rounded-full border border-orange/20">// systems in motion</span>
-      <h2 class="font-display font-semibold text-4xl mt-6 mb-6 tracking-tight">A system you can watch work.</h2>
+      <span class="font-mono text-xs text-orange-deep bg-orange/10 px-3 py-1.5 rounded-full border border-orange/20">// systems in motion</span>
+      <h2 class="font-display font-semibold text-4xl mt-6 mb-6 tracking-tight text-cream">A system you can watch work.</h2>
       <p class="text-muted leading-relaxed mb-8 max-w-md">
         Every automation we ship comes with visibility — you see what ran,
         what's queued, and what needs a human, in plain language, not raw logs.
       </p>
       <ul class="space-y-4 font-mono text-sm text-muted">
-        <li class="flex items-center gap-3 bg-surface border border-edge px-4 py-2.5 rounded-lg"><span class="h-2 w-2 rounded-full bg-orange animate-pulse"></span>invoice_sync.agent — triggers on new upload</li>
-        <li class="flex items-center gap-3 bg-surface border border-edge px-4 py-2.5 rounded-lg"><span class="h-2 w-2 rounded-full bg-orange animate-pulse" style="animation-delay: 0.2s"></span>lead_router.flow — connects CRM to Slack</li>
-        <li class="flex items-center gap-3 bg-surface border border-edge px-4 py-2.5 rounded-lg"><span class="h-2 w-2 rounded-full bg-orange animate-pulse" style="animation-delay: 0.4s"></span>report_builder.job — runs nightly at 02:00</li>
+        <li class="flex items-center gap-3 bg-surface border border-edge px-4 py-2.5 rounded-lg shadow-sm"><span class="h-2 w-2 rounded-full bg-orange animate-pulse"></span>invoice_sync.agent — triggers on new upload</li>
+        <li class="flex items-center gap-3 bg-surface border border-edge px-4 py-2.5 rounded-lg shadow-sm"><span class="h-2 w-2 rounded-full bg-orange animate-pulse" style="animation-delay: 0.2s"></span>lead_router.flow — connects CRM to Slack</li>
+        <li class="flex items-center gap-3 bg-surface border border-edge px-4 py-2.5 rounded-lg shadow-sm"><span class="h-2 w-2 rounded-full bg-orange animate-pulse" style="animation-delay: 0.4s"></span>report_builder.job — runs nightly at 02:00</li>
       </ul>
     </div>
 
-    <div class="reveal reveal-delay-1 bg-surface border border-edge rounded-2xl overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.7)] relative z-10">
-      <div class="flex items-center gap-2 px-5 py-3.5 border-b border-edge bg-surface2">
+    <!-- Maintained a dark terminal for sharp aesthetic contrast inside the light theme -->
+    <div class="reveal reveal-delay-1 bg-[#0A0C10] border border-[#242833] rounded-2xl overflow-hidden shadow-2xl relative z-10">
+      <div class="flex items-center gap-2 px-5 py-3.5 border-b border-[#242833] bg-[#12151B]">
         <span class="h-3 w-3 rounded-full bg-orange/80 shadow-[0_0_8px_#F1791F]"></span>
-        <span class="h-3 w-3 rounded-full bg-cream/20"></span>
-        <span class="h-3 w-3 rounded-full bg-cream/20"></span>
-        <span class="ml-3 font-mono text-xs text-muted">otec-pipeline — live</span>
+        <span class="h-3 w-3 rounded-full bg-white/20"></span>
+        <span class="h-3 w-3 rounded-full bg-white/20"></span>
+        <span class="ml-3 font-mono text-xs text-[#8D97AA]">otec-pipeline — live</span>
       </div>
-      <div id="terminal" aria-hidden="true" class="p-6 font-mono text-[13px] leading-8 h-72 overflow-hidden text-muted bg-[#0D1017]"></div>
+      <div id="terminal" aria-hidden="true" class="p-6 font-mono text-[13px] leading-8 h-72 overflow-hidden text-[#8D97AA] bg-[#0D1017]"></div>
     </div>
   </div>
 </section>
 
 <!-- ============ STATS ============ -->
 <section class="py-20 border-y border-edge bg-surface2 relative overflow-hidden">
-  <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiMzMTJDNkUiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9zdmc+')] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]"></div>
+  <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiMzMTJDNkUiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]"></div>
   <div class="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-2 md:grid-cols-4 gap-10 text-center relative z-10">
     <div class="reveal">
-      <div class="font-display font-semibold text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-br from-orange-light to-orange drop-shadow-md"><span class="counter" data-target="40">0</span>%</div>
+      <div class="font-display font-semibold text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-br from-orange-light to-orange drop-shadow-sm"><span class="counter" data-target="40">0</span>%</div>
       <p class="text-muted text-sm mt-3 font-mono">avg. manual hours cut</p>
     </div>
     <div class="reveal reveal-delay-1">
-      <div class="font-display font-semibold text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-br from-orange-light to-orange drop-shadow-md"><span class="counter" data-target="6">0</span>wk</div>
+      <div class="font-display font-semibold text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-br from-orange-light to-orange drop-shadow-sm"><span class="counter" data-target="6">0</span>wk</div>
       <p class="text-muted text-sm mt-3 font-mono">to first automation live</p>
     </div>
     <div class="reveal reveal-delay-2">
-      <div class="font-display font-semibold text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-br from-orange-light to-orange drop-shadow-md">24/7</div>
+      <div class="font-display font-semibold text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-br from-orange-light to-orange drop-shadow-sm">24/7</div>
       <p class="text-muted text-sm mt-3 font-mono">monitored uptime</p>
     </div>
     <div class="reveal reveal-delay-3">
-      <div class="font-display font-semibold text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-br from-orange-light to-orange drop-shadow-md"><span class="counter" data-target="10">0</span>+</div>
+      <div class="font-display font-semibold text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-br from-orange-light to-orange drop-shadow-sm"><span class="counter" data-target="10">0</span>+</div>
       <p class="text-muted text-sm mt-3 font-mono">tools wired per system</p>
     </div>
   </div>
-  <p class="text-center text-muted/40 text-[11px] font-mono mt-12 uppercase tracking-widest relative z-10">figures are illustrative — swap in your own once you have real numbers</p>
+  <p class="text-center text-muted/60 text-[11px] font-mono mt-12 uppercase tracking-widest relative z-10">figures are illustrative — swap in your own once you have real numbers</p>
 </section>
 
 <!-- ============ MANIFESTO ============ -->
 <section id="manifesto" class="py-32 lg:py-44 relative">
   <div class="max-w-4xl mx-auto px-6 lg:px-10 text-center reveal">
-    <span class="font-mono text-xs text-orange bg-orange/10 px-3 py-1.5 rounded-full border border-orange/20">// manifesto</span>
-    <p class="font-display font-medium text-3xl lg:text-5xl leading-tight tracking-tight mt-10">
+    <span class="font-mono text-xs text-orange-deep bg-orange/10 px-3 py-1.5 rounded-full border border-orange/20">// manifesto</span>
+    <p class="font-display font-medium text-3xl lg:text-5xl leading-tight tracking-tight mt-10 text-cream">
       We think software should disappear into the background of work —
       quietly running the parts that used to eat your afternoon,
       so your team is left with the parts only they can do.
     </p>
     <div class="mt-12 flex flex-col items-center justify-center">
-        <img src="Screenshot 2026-07-29 182215.png" alt="OTEC Labs - Process Mining and Software Development" class="h-12 w-12 object-contain drop-shadow-xl opacity-80 mb-4" />
-        <p class="font-mono text-sm text-orange">— OTEC LABS</p>
+        <img src="Screenshot 2026-07-29 182215.png" alt="OTEC Labs - Process Mining and Software Development" class="h-12 w-12 object-contain drop-shadow-md mb-4" />
+        <p class="font-mono text-sm text-orange-deep font-semibold">— OTEC LABS</p>
     </div>
   </div>
 </section>
@@ -490,9 +491,9 @@
 <!-- ============ CTA ============ -->
 <section id="contact" class="py-24">
   <div class="max-w-6xl mx-auto px-6 lg:px-10">
-    <div class="reveal relative bg-gradient-to-br from-surface to-surface2 border border-edge rounded-3xl p-12 lg:p-20 text-center overflow-hidden shadow-2xl">
-      <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-orange/20 blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-navy/40 blur-3xl pointer-events-none"></div>
+    <div class="reveal relative bg-gradient-to-br from-surface to-surface2 border border-edge rounded-3xl p-12 lg:p-20 text-center overflow-hidden shadow-xl">
+      <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-orange/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-navy/10 blur-3xl pointer-events-none"></div>
 
       <div class="relative z-10">
         <h2 class="font-display font-semibold text-4xl lg:text-5xl tracking-tight mb-6 text-cream">Let's automate something.</h2>
@@ -501,10 +502,10 @@
           and what it'd take.
         </p>
         <div class="flex flex-wrap justify-center gap-5">
-          <a href="mailto:hello@otec.dev" class="bg-orange hover:bg-orange-deep text-bg font-bold px-9 py-4 rounded-full transition-all duration-300 shadow-premium hover:shadow-premium-hover transform hover:-translate-y-1">
+          <a href="mailto:hello@otec.dev" class="bg-orange hover:bg-orange-deep text-white font-bold px-9 py-4 rounded-full transition-all duration-300 shadow-premium hover:shadow-premium-hover transform hover:-translate-y-1">
             hello@otec.dev
           </a>
-          <a href="#top" class="inline-flex items-center gap-2 border-2 border-edge hover:border-orange/50 hover:bg-surface px-9 py-4 rounded-full transition-all duration-300 font-semibold text-cream">
+          <a href="#top" class="inline-flex items-center gap-2 border-2 border-edge hover:border-orange/50 hover:bg-bg px-9 py-4 rounded-full transition-all duration-300 font-semibold text-cream">
             Back to top
           </a>
         </div>
@@ -512,6 +513,44 @@
     </div>
   </div>
 </section>
+
+<!-- ============ FLOATING AI BOT WIDGET ============ -->
+<div id="ai-bot-container" class="fixed bottom-6 right-6 z-[90] flex flex-col items-end">
+  
+  <!-- AI Chat Window -->
+  <div id="ai-chat-window" class="hidden w-80 sm:w-96 bg-surface border border-edge rounded-2xl shadow-2xl mb-4 overflow-hidden flex-col transition-all duration-300 origin-bottom-right">
+    <div class="bg-orange p-4 text-white flex justify-between items-center shadow-md">
+      <div class="flex items-center gap-2">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" /></svg>
+        <span class="font-display font-semibold tracking-wide">OTEC Assistant</span>
+      </div>
+      <button id="close-ai" class="hover:text-bg transition-colors" aria-label="Close Chat">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+    </div>
+    
+    <div id="ai-messages" class="p-5 h-72 overflow-y-auto bg-bg flex flex-col gap-4 text-sm font-body">
+      <!-- Bot Initial Message -->
+      <div class="bg-surface border border-edge text-cream p-3.5 rounded-xl rounded-tl-sm self-start max-w-[85%] shadow-sm">
+        Hi there! 👋 I'm the OTEC automated assistant. What manual processes are currently slowing your team down?
+      </div>
+    </div>
+    
+    <div class="p-3 border-t border-edge bg-surface flex gap-2 items-center">
+      <input type="text" id="ai-input" placeholder="Type your message..." class="flex-1 bg-surface2 border border-edge rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-orange focus:ring-1 focus:ring-orange text-cream transition-all">
+      <button id="ai-send" class="bg-orange text-white p-2.5 rounded-lg hover:bg-orange-deep transition-colors shadow-sm">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
+      </button>
+    </div>
+  </div>
+  
+  <!-- AI Toggle Avatar -->
+  <button id="ai-toggle" class="h-16 w-16 bg-gradient-to-tr from-orange to-orange-light rounded-full shadow-premium flex items-center justify-center text-white hover:scale-110 transition-transform duration-300 animate-bounce group relative" aria-label="Open AI Assistant">
+    <svg class="h-7 w-7 transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+    <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full border-2 border-surface"></span>
+  </button>
+</div>
+
 </main>
 
 <!-- ============ FOOTER ============ -->
@@ -520,7 +559,7 @@
     <div class="max-w-xs">
       <a href="#top" aria-label="OTEC Labs Homepage" class="flex items-center gap-3 mb-6 group">
         <img src="Screenshot 2026-07-29 182215.png" alt="OTEC Labs Logo" class="h-10 w-10 object-contain group-hover:scale-105 transition-transform duration-500" />
-        <span class="font-display font-semibold text-xl tracking-tight">OTEC <span class="text-orange">LABS</span></span>
+        <span class="font-display font-semibold text-xl tracking-tight text-cream">OTEC <span class="text-orange">LABS</span></span>
       </a>
       <p class="text-muted text-sm leading-relaxed">Premium software and intelligent AI automation built for teams who'd rather ship than repeat.</p>
     </div>
@@ -552,7 +591,7 @@
     </div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 mt-16 pt-8 border-t border-edge flex flex-col sm:flex-row justify-between gap-4 font-mono text-[11px] uppercase tracking-widest text-muted/50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 mt-16 pt-8 border-t border-edge flex flex-col sm:flex-row justify-between gap-4 font-mono text-[11px] uppercase tracking-widest text-muted/80">
     <span>© <span id="year"></span> OTEC Labs. All rights reserved.</span>
     <span>Built with intent.</span>
   </div>
@@ -561,47 +600,45 @@
 <script>
   // Loading Screen Logic
   window.addEventListener('load', () => {
-    // Allows the progress bar animation to complete smoothly before fading out
     setTimeout(() => {
         const loader = document.getElementById('loader');
         const bodyWrap = document.getElementById('body-wrap');
         loader.style.opacity = '0';
         setTimeout(() => {
             loader.style.display = 'none';
-            // Unlock scrolling
             bodyWrap.classList.remove('overflow-hidden');
         }, 700); 
     }, 1600);
   });
 
-  // year
+  // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // nav scroll state
+  // Nav scroll state
   const navInner = document.getElementById('navInner');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 20) {
-      navInner.classList.add('bg-surface/80','backdrop-blur-xl','border-b','border-edge','h-16', 'shadow-lg');
+      navInner.classList.add('bg-surface/90','backdrop-blur-xl','border-b','border-edge','h-16', 'shadow-sm');
       navInner.classList.remove('h-20');
     } else {
-      navInner.classList.remove('bg-surface/80','backdrop-blur-xl','border-b','border-edge','h-16', 'shadow-lg');
+      navInner.classList.remove('bg-surface/90','backdrop-blur-xl','border-b','border-edge','h-16', 'shadow-sm');
       navInner.classList.add('h-20');
     }
   });
 
-  // mobile menu
+  // Mobile menu
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
-  // reveal on scroll
+  // Reveal on scroll
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // hero typed line
+  // Hero typed line
   const typeLine = document.getElementById('typeLine');
   const fullText = 'otec --deploy --mode automation';
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -618,7 +655,7 @@
     typeLine.textContent = fullText;
   }
 
-  // counters
+  // Counters
   const counters = document.querySelectorAll('.counter');
   const counterIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -640,19 +677,19 @@
   }, { threshold: 0.5 });
   counters.forEach(c => counterIO.observe(c));
 
-  // terminal mock log
+  // Terminal mock log (Kept strictly dark mode colors for visual contrast)
   const terminal = document.getElementById('terminal');
   const lines = [
-    { t: '$ otec run invoice_sync.agent', c: 'text-cream' },
-    { t: '> reading 14 new uploads...', c: 'text-muted' },
-    { t: '> matched 14/14 to open orders', c: 'text-orange-light' },
-    { t: '> synced to accounting — done in 4.2s', c: 'text-orange-light' },
-    { t: '$ otec run lead_router.flow', c: 'text-cream' },
-    { t: '> new lead: "Acme Robotics"', c: 'text-muted' },
-    { t: '> scored 92/100 — routed to sales', c: 'text-orange-light' },
-    { t: '> notified #sales-inbound on Slack', c: 'text-orange-light' },
-    { t: '$ otec status --all', c: 'text-cream' },
-    { t: '> 3 flows running · 0 failed · all clear', c: 'text-orange-light' },
+    { t: '$ otec run invoice_sync.agent', c: 'text-[#F3EEE2]' },
+    { t: '> reading 14 new uploads...', c: 'text-[#8D97AA]' },
+    { t: '> matched 14/14 to open orders', c: 'text-[#FFA85C]' },
+    { t: '> synced to accounting — done in 4.2s', c: 'text-[#FFA85C]' },
+    { t: '$ otec run lead_router.flow', c: 'text-[#F3EEE2]' },
+    { t: '> new lead: "Acme Robotics"', c: 'text-[#8D97AA]' },
+    { t: '> scored 92/100 — routed to sales', c: 'text-[#FFA85C]' },
+    { t: '> notified #sales-inbound on Slack', c: 'text-[#FFA85C]' },
+    { t: '$ otec status --all', c: 'text-[#F3EEE2]' },
+    { t: '> 3 flows running · 0 failed · all clear', c: 'text-[#FFA85C]' },
   ];
   let lineIdx = 0;
   function pushLine() {
@@ -669,6 +706,65 @@
   }
   pushLine();
   setInterval(pushLine, 1500);
+
+  // --- AI Bot Widget Logic ---
+  const aiToggle = document.getElementById('ai-toggle');
+  const aiWindow = document.getElementById('ai-chat-window');
+  const closeAi = document.getElementById('close-ai');
+  const aiInput = document.getElementById('ai-input');
+  const aiSend = document.getElementById('ai-send');
+  const aiMessages = document.getElementById('ai-messages');
+
+  // Open/Close AI Window
+  aiToggle.addEventListener('click', () => {
+    aiWindow.classList.remove('hidden');
+    aiWindow.classList.add('flex');
+    aiToggle.classList.remove('animate-bounce');
+    // Hide the notification dot once opened
+    const dot = aiToggle.querySelector('span.absolute');
+    if(dot) dot.style.display = 'none';
+  });
+
+  closeAi.addEventListener('click', () => {
+    aiWindow.classList.add('hidden');
+    aiWindow.classList.remove('flex');
+  });
+
+  // Handle Messaging
+  function sendMsg() {
+    const val = aiInput.value.trim();
+    if (!val) return;
+
+    // Append User Message
+    const uMsg = document.createElement('div');
+    uMsg.className = "bg-orange text-white p-3.5 rounded-xl rounded-tr-sm self-end max-w-[85%] ml-auto shadow-sm";
+    uMsg.textContent = val;
+    aiMessages.appendChild(uMsg);
+    aiInput.value = '';
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+
+    // Simulate Bot Typing Indicator (Optional enhancement)
+    const typing = document.createElement('div');
+    typing.className = "bg-surface border border-edge text-muted p-3.5 rounded-xl rounded-tl-sm self-start max-w-[85%] shadow-sm text-xs flex gap-1 items-center";
+    typing.innerHTML = '<span class="h-1.5 w-1.5 bg-muted rounded-full animate-pulse"></span><span class="h-1.5 w-1.5 bg-muted rounded-full animate-pulse" style="animation-delay: 0.2s"></span><span class="h-1.5 w-1.5 bg-muted rounded-full animate-pulse" style="animation-delay: 0.4s"></span>';
+    setTimeout(() => {
+        aiMessages.appendChild(typing);
+        aiMessages.scrollTop = aiMessages.scrollHeight;
+    }, 300);
+
+    // Append Bot Reply
+    setTimeout(() => {
+      aiMessages.removeChild(typing);
+      const bMsg = document.createElement('div');
+      bMsg.className = "bg-surface border border-edge text-cream p-3.5 rounded-xl rounded-tl-sm self-start max-w-[85%] shadow-sm";
+      bMsg.innerHTML = "I can definitely help optimize <strong>" + val + "</strong>. <a href='#contact' class='text-orange underline font-medium'>Let's book a build call</a> to discuss mapping that workflow out!";
+      aiMessages.appendChild(bMsg);
+      aiMessages.scrollTop = aiMessages.scrollHeight;
+    }, 1200);
+  }
+
+  aiSend.addEventListener('click', sendMsg);
+  aiInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMsg(); });
 </script>
 
 </body>
